@@ -1,0 +1,7 @@
+{
+  "name": "my-filament-pack",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A Filament transform pack, loaded by a class transform server from GitHub."
+}

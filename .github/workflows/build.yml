@@ -1,0 +1,23 @@
+# Builds the pack the way a class transform server will (spec §5.7): the
+# lockfile's dependencies with install scripts off, then one bundled module.
+# A push that would fail on the server fails here first.
+name: Build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+      - run: npx --yes esbuild@0.25 src/pack.ts --bundle --platform=node --target=node22 --format=esm --outfile=dist/pack.mjs
+      - run: node -e "import('./dist/pack.mjs').then((m) => { if (!m.pack || typeof m.pack.create !== 'function') { console.error('dist/pack.mjs exports no pack'); process.exit(1); } console.log('pack', m.pack.id, m.pack.version); })"

@@ -1,0 +1,4 @@
+{
+  "packs": [{ "entry": "dist/pack.mjs" }],
+  "build": { "entry": "src/pack.ts", "out": "dist/pack.mjs" }
+}
