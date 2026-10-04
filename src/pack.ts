@@ -35,8 +35,29 @@ export const pack = {
   // Provider keys this pack reads, by name. The server hands the pack these
   // and no others; set them on the admin page's Provider keys. A name
   // starting with GITHUB_TOKEN is refused: those hold the server's tokens.
-  keys: [],
+  keys: [{ name: "PACK_TEST_KEY", description: "Example provider key, to show a review flagging a new key.", sources: [SOURCE.id] }],
   create: () => [
+    {
+      manifest: {
+        id: "pack-test.domain_to_registrar",
+        version: "1.0.0",
+        impl: "remote",
+        publisher: "your-org",
+        name: "Registrar lookup (through a provider)",
+        description: "Asks a third-party provider who registered a domain; the provider sees the query.",
+        sources: [SOURCE.id],
+        input_types: ["domain-name"],
+        input_arity: "one",
+        max_input: 10,
+        output_types: ["organization"],
+        link_types: ["registered_by"],
+        opsec: "third_party",
+        max_results: 10,
+        timeout_s: 30,
+        cache_ttl_s: 300,
+      },
+      handler: async () => ({ entities: [], links: [], truncated: false }),
+    },
     {
       manifest: {
         id: "pack-test.domain_to_ip",
