@@ -1,0 +1,20 @@
+{
+  "id": "example.rdap.registrar",
+  "version": "1.0.0",
+  "impl": "script",
+  "package": "example.rdap",
+  "publisher": "example",
+  "name": "RDAP: registrar of a domain",
+  "description": "Asks Verisign's RDAP service who a .com or .net domain is registered through. Verisign sees the query, so this is third party.",
+  "sources": ["verisign-rdap"],
+  "input_types": ["domain-name"],
+  "input_arity": "one",
+  "max_input": 10,
+  "output_types": ["organization"],
+  "link_types": ["registered_by"],
+  "opsec": "third_party",
+  "max_results": 20,
+  "timeout_s": 30,
+  "cache_ttl_s": 3600,
+  "capabilities": { "hosts": ["rdap.verisign.com"] }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "a domain Verisign does not hold asks nothing",
+  "input": { "entities": [{ "type": "domain-name", "value": "example.org", "properties": {} }] },
+  "responses": [],
+  "expect": {
+    "entities": [],
+    "links": [],
+    "messages": [{ "level": "info", "text": "example.org: this example asks Verisign, which holds only .com and .net" }]
+  }
+}

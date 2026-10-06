@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "example.rdap",
+  "name": "RDAP registrar lookup (example)",
+  "version": "1.0.0",
+  "publisher": "example",
+  "license": "LICENSE",
+  "sources": [
+    {
+      "id": "verisign-rdap",
+      "provider": "Verisign RDAP",
+      "license": "free",
+      "redistributable": true,
+      "coverage": ".com and .net registrations",
+      "freshness": "live",
+      "pii_class": "low",
+      "category": "whois"
+    }
+  ],
+  "transforms": [
+    {
+      "manifest": "manifests/registrar.json",
+      "module": "transforms/registrar.js",
+      "fixtures": ["fixtures/example-com.json", "fixtures/unknown-tld.json"]
+    }
+  ]
+}

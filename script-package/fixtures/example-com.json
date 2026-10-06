@@ -1,0 +1,48 @@
+{
+  "name": "example.com, recorded from Verisign RDAP",
+  "input": {
+    "entities": [
+      {
+        "type": "domain-name",
+        "value": "example.com",
+        "properties": {}
+      }
+    ]
+  },
+  "now": "2026-10-05T00:00:00.000Z",
+  "responses": [
+    {
+      "method": "GET",
+      "url": "https://rdap.verisign.com/com/v1/domain/example.com",
+      "status": 200,
+      "headers": {
+        "content-type": "application/rdap+json"
+      },
+      "body": "{\"objectClassName\": \"domain\", \"ldhName\": \"EXAMPLE.COM\", \"entities\": [{\"objectClassName\": \"entity\", \"roles\": [\"registrar\"], \"publicIds\": [{\"type\": \"IANA Registrar ID\", \"identifier\": \"376\"}], \"vcardArray\": [\"vcard\", [[\"version\", {}, \"text\", \"4.0\"], [\"fn\", {}, \"text\", \"RESERVED-Internet Assigned Numbers Authority\"]]]}], \"events\": [{\"eventAction\": \"registration\", \"eventDate\": \"1995-08-14T04:00:00Z\"}, {\"eventAction\": \"expiration\", \"eventDate\": \"2027-08-13T04:00:00Z\"}]}",
+      "fetched_at": "2026-10-05T00:00:00.000Z"
+    }
+  ],
+  "expect": {
+    "entities": [
+      {
+        "ref": "e0",
+        "type": "organization",
+        "value": "RESERVED-Internet Assigned Numbers Authority",
+        "properties": {
+          "registry_id": "IANA:376"
+        }
+      }
+    ],
+    "links": [
+      {
+        "from": "in:0",
+        "to": "e0",
+        "type": "registered_by",
+        "source_id": "verisign-rdap",
+        "first_seen": "1995-08-14T04:00:00Z",
+        "last_seen": "2026-10-05T00:00:00.000Z",
+        "source_confidence": "high"
+      }
+    ]
+  }
+}

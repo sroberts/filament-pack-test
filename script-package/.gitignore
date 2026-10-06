@@ -1,0 +1,2 @@
+# A signing key never goes in the repository.
+*.key
